@@ -1,4 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+
+Map audioData = {
+  'url':
+      'https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4'
+};
 
 class Song {
   final String name;
@@ -136,6 +142,9 @@ class CustomBottomBar extends StatelessWidget {
 }
 
 class PlayButton extends StatelessWidget {
+  AudioPlayer audioPlayer = new AudioPlayer();
+  bool playing = false;
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -156,15 +165,34 @@ class PlayButton extends StatelessWidget {
           ),
         ),
         child: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            getAudio();
+          },
           icon: Icon(
-            Icons.play_arrow,
+            playing == false ? Icons.play_arrow : Icons.pause,
             color: Colors.white.withOpacity(.9),
             size: 40.0,
           ),
         ),
       ),
     );
+  }
+
+  void getAudio() async {
+    var url =
+        "https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4";
+    if (playing) {
+      var res = await audioPlayer.pause();
+      if (res == 1) {
+        playing = false;
+      }
+    } else {
+      var res = await audioPlayer.play(url);
+
+      if (res == 1) {
+        playing = true;
+      }
+    }
   }
 }
 
@@ -188,7 +216,7 @@ class CustomBody extends StatelessWidget {
               itemExtent: 45.0,
               itemBuilder: (context, index) => ListTile(
                 leading: Icon(
-                  index == 0 ? Icons.play_arrow : Icons.lock_outline,
+                  index == 0 ? Icons.pause : Icons.play_arrow,
                   size: 22,
                 ),
                 title: Text(
