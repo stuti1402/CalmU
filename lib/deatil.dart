@@ -1,3 +1,7 @@
+//import 'dart:html';
+
+
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +28,7 @@ List<Song> songs = [
 ];
 
 class Detail extends StatefulWidget {
+  
   @override
   _DetailState createState() => _DetailState();
 }
@@ -44,8 +49,37 @@ class _DetailState extends State<Detail> {
     );
   }
 }
+class CustomBottomBar extends StatefulWidget {
+  
 
-class CustomBottomBar extends StatelessWidget {
+  @override
+  _CustomBottomBarState createState() => _CustomBottomBarState();
+}
+
+class _CustomBottomBarState extends State<CustomBottomBar> {
+
+    AudioPlayer audioPlayer = AudioPlayer();
+  bool isPlaying = false;
+  String currentTime = "00:00";
+  String completeTime= "00:00";
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    audioPlayer.onAudioPositionChanged.listen((Duration duration){
+      setState(() {
+        currentTime = duration.toString().split(".")[0];
+      });
+    });
+
+    audioPlayer.onDurationChanged.listen((Duration duration){
+      setState(() {
+        completeTime = duration.toString().split(".")[0];
+      });
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -113,7 +147,7 @@ class CustomBottomBar extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "2.30",
+                          currentTime,
                           style: TextStyle(
                             color: Colors.black38,
                             fontWeight: FontWeight.w500,
@@ -127,7 +161,7 @@ class CustomBottomBar extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "-0.50",
+                          completeTime,
                           style: TextStyle(
                             color: Colors.black38,
                             fontWeight: FontWeight.w500,
@@ -147,13 +181,46 @@ class CustomBottomBar extends StatelessWidget {
 }
 
 class PlayButton extends StatefulWidget {
+  const PlayButton({ Key key, this.mMusic }) : super(key: key);
+final Song mMusic;
   @override
   _PlayButtonState createState() => _PlayButtonState();
 }
 
+
 class _PlayButtonState extends State<PlayButton> {
+   IconData btnIcon= Icons.play_arrow;
   AudioPlayer audioPlayer = new AudioPlayer();
   bool playing = false;
+  String currentTime = "00:00";
+  String completeTime= "00:00";
+  String currentsong="";
+  final String path="https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4";
+
+  //seek bar
+  Duration duration= new Duration();
+  Duration position=new Duration();
+   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   
+    audioPlayer.onAudioPositionChanged.listen((Duration duration){
+      setState(() {
+        currentTime = duration.toString().split(".")[0];
+      });
+    });
+
+    audioPlayer.onDurationChanged.listen((Duration duration){
+      setState(() {
+        completeTime = duration.toString().split(".")[0];
+      });
+    });
+
+  }
+
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -174,81 +241,147 @@ class _PlayButtonState extends State<PlayButton> {
             ],
           ),
         ),
-        child: IconButton(
-          onPressed: () {
-            getAudio();
-          },
-          icon: Icon(
-            playing == false ? Icons.play_arrow : Icons.pause,
-            color: Colors.white.withOpacity(.9),
-            size: 40.0,
-          ),
+        child:  IconButton(
+                  icon: Icon(playing ? Icons.pause : Icons.play_arrow),
+                  onPressed: (){getAudio('url');
+              
+                    if(playing){
+                      audioPlayer.pause();
+
+                      setState(() {
+                        playing = false;
+                      });
+                    }else{
+                      audioPlayer.resume();
+                      setState(() {
+                        playing = true;
+                      });
+                    }
+
+                  },
+                )  ,
+         // icon: Icon(btnIcon ),
+          //iconSize: 40,
         ),
-      ),
+      
     );
   }
-
-  void getAudio() async {
+    /*_audioPlayer.onDurationChanged.listen((event) {
+    setState(() {
+      duration=event;
+    });
+  });
+  _audioPlayer.onDurationChanged.listen((event) {
+    setState(() {
+      position=event;
+    });
+  });*/
+  void getAudio(String url) async {
     var url =
         "https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4";
-    if (playing) {
-      var res = await audioPlayer.pause();
+    if (playing && currentsong != url) {
+     
+     audioPlayer.pause();
+     int res =await audioPlayer.play(url);
       if (res == 1) {
-        playing = false;
+        setState(() {
+          currentsong=url;
+        });
+       
       }
-    } else {
-      var res = await audioPlayer.play(url);
+    } 
+  else if(!playing ) {
+      int res = await audioPlayer.play(url);
 
       if (res == 1) {
-        playing = true;
+       setState(() {
+          playing = true;
+          btnIcon=Icons.pause;
+       });
+       
       }
     }
-  }
-}
+   }}
+  class CustomBody extends StatelessWidget {
 
-class CustomBody extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    double listheight = (48 * songs.length).toDouble();
-    return SingleChildScrollView(
+
+    Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    double listHeight = ((size.height * 0.06) * songs.length).toDouble();
+     
+
+    return Material(
       child: Column(
         children: [
+          // contains image and background image with clipper
           CustomHeader(),
-          Container(
-            height: listheight,
-            padding: EdgeInsets.symmetric(
-              horizontal: 35.0,
-            ),
-            margin: EdgeInsets.only(bottom: 130.0),
-            child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: songs.length,
-              itemExtent: 45.0,
-              itemBuilder: (context, index) => ListTile(
-                leading: Icon(
-                  index == 0 ? Icons.pause : Icons.play_arrow,
-                  size: 22,
-                ),
-                title: Text(
-                  songs[index].name,
-                  style: TextStyle(
-                    fontSize: 14.0,
-                  ),
-                ),
-                trailing: Text(
-                  songs[index].time,
-                  style: TextStyle(
-                    fontSize: 14.0,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+
+          // List of songs
+          Expanded(
+              child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Container(
+              height: listHeight,
+            
+              margin: EdgeInsets.only(bottom: size.height * 0.1),
+              child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: songs.length,
+                  itemExtent: size.height * 0.055,
+                  itemBuilder: (context, index) => ListTile(
+      
+                        leading: IconButton(
+                          icon:Icon(
+                          index == 0 ? Icons.play_arrow : Icons.play_arrow,
+                          size: 22,
+                        ),
+                        onPressed: () {
+                  
+                                              },),
+                                              title: index == 0
+                                                  ? Text(
+                                                      songs[index].name,
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.bold,
+                                                        
+                                                      ),
+                                                    )
+                                                  : Text(
+                                                      songs[index].name,
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.bold,
+                                                        
+                                                      ),
+                                                    ),
+                                          trailing: index == 0
+                                              ? Text(
+                                            songs[index].time,
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              
+                                            ),
+                                          )
+                                              : Text(
+                                            songs[index].time,
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              
+                                            ),
+                                          ),
+                                            )),
+                                  ),
+                                ))
+                              ],
+                            ),
+                          );
+                        }
+                      }
+                      
+                     
 
 class CustomHeader extends StatelessWidget {
   @override
