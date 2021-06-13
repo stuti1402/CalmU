@@ -23,7 +23,12 @@ List<Song> songs = [
   Song(name: "Love the feelings", time: "3:44"),
 ];
 
-class Detail extends StatelessWidget {
+class Detail extends StatefulWidget {
+  @override
+  _DetailState createState() => _DetailState();
+}
+
+class _DetailState extends State<Detail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,7 +146,12 @@ class CustomBottomBar extends StatelessWidget {
   }
 }
 
-class PlayButton extends StatelessWidget {
+class PlayButton extends StatefulWidget {
+  @override
+  _PlayButtonState createState() => _PlayButtonState();
+}
+
+class _PlayButtonState extends State<PlayButton> {
   AudioPlayer audioPlayer = new AudioPlayer();
   bool playing = false;
 

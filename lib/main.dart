@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_meditation/deatil.dart';
+import 'package:flutter_meditation/focus.dart';
+import 'package:flutter_meditation/sleep.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.black87, // navigation bar color
+      statusBarColor: Color(0xffaba197), // status bar color
+      statusBarIconBrightness: Brightness.dark, // status bar icon color
+      systemNavigationBarIconBrightness:
+          Brightness.dark, // color of navigation controls
+    ),
+  );
   runApp(MyApp());
 }
 
@@ -20,7 +32,12 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomepageState createState() => _HomepageState();
+}
+
+class _HomepageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,82 +55,84 @@ class HomePage extends StatelessWidget {
 class CustomAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 105.0,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.black87,
-            Colors.transparent,
-          ],
+    return SafeArea(
+      child: Container(
+        height: 105.0,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black87,
+              Colors.transparent,
+            ],
+          ),
         ),
-      ),
-      child: Stack(
-        children: [
-          ClipPath(
-            clipper: AppBarClipper(),
-            child: Container(
-              height: 60.0,
-              width: MediaQuery.of(context).size.width,
-              color: Color(0xffaba197),
+        child: Stack(
+          children: [
+            ClipPath(
+              clipper: AppBarClipper(),
+              child: Container(
+                height: 60.0,
+                width: MediaQuery.of(context).size.width,
+                color: Color(0xffaba197),
+              ),
             ),
-          ),
-          Positioned(
-            top: 35.0,
-            left: MediaQuery.of(context).size.width / 2 - 25,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 25.0,
-                  backgroundColor: Colors.grey.shade100,
-                ),
-                CircleAvatar(
-                  radius: 23.0,
-                  backgroundImage: AssetImage("assets/face.jpg"),
-                ),
-              ],
+            Positioned(
+              top: 35.0,
+              left: MediaQuery.of(context).size.width / 2 - 25,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 25.0,
+                    backgroundColor: Colors.grey.shade100,
+                  ),
+                  CircleAvatar(
+                    radius: 23.0,
+                    backgroundImage: AssetImage("assets/face.jpg"),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            top: 75.0,
-            left: MediaQuery.of(context).size.width / 2 - 10,
-            child: CircleAvatar(
-              radius: 10.0,
-              backgroundColor: Colors.white,
-              child: FittedBox(
-                child: Icon(
-                  Icons.add,
-                  color: Colors.black54,
+            Positioned(
+              top: 75.0,
+              left: MediaQuery.of(context).size.width / 2 - 10,
+              child: CircleAvatar(
+                radius: 10.0,
+                backgroundColor: Colors.white,
+                child: FittedBox(
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.black54,
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.wifi_tethering,
-                    color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.wifi_tethering,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {},
                   ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.notifications,
-                    color: Colors.white,
+                  IconButton(
+                    icon: Icon(
+                      Icons.notifications,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {},
                   ),
-                  onPressed: () {},
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -211,7 +230,12 @@ class Section extends StatelessWidget {
   }
 }
 
-class NavBar extends StatelessWidget {
+class NavBar extends StatefulWidget {
+  @override
+  _NavbarState createState() => _NavbarState();
+}
+
+class _NavbarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -233,21 +257,21 @@ class NavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              NavIcon(
+              NavOne(
                 icon: Icons.bubble_chart,
                 active: false,
               ),
               SizedBox(
                 width: 1.0,
               ),
-              NavIcon(
+              NavTwo(
                 icon: Icons.landscape,
                 active: true,
               ),
               SizedBox(
                 width: 1.0,
               ),
-              NavIcon(
+              NavThree(
                 icon: Icons.brightness_3,
                 active: false,
               ),
@@ -295,11 +319,11 @@ class NavBar extends StatelessWidget {
   }
 }
 
-class NavIcon extends StatelessWidget {
+class NavOne extends StatelessWidget {
   final IconData icon;
   final bool active;
 
-  const NavIcon({
+  const NavOne({
     Key key,
     this.icon,
     this.active,
@@ -307,15 +331,99 @@ class NavIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 30.0,
-      backgroundColor: Color(0xff1e1e1e),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Focuses(),
+          ),
+        );
+      },
       child: CircleAvatar(
-        radius: 25.0,
-        backgroundColor: active ? Colors.grey.shade100 : Colors.transparent,
-        child: Icon(
-          icon,
-          color: active ? Colors.black87 : Colors.white,
+        radius: 30.0,
+        backgroundColor: Color(0xff1e1e1e),
+        child: CircleAvatar(
+          radius: 25.0,
+          backgroundColor: active ? Colors.grey.shade100 : Colors.transparent,
+          child: Icon(
+            icon,
+            color: active ? Colors.black87 : Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NavTwo extends StatelessWidget {
+  final IconData icon;
+  final bool active;
+
+  const NavTwo({
+    Key key,
+    this.icon,
+    this.active,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+          ),
+        );
+      },
+      child: CircleAvatar(
+        radius: 30.0,
+        backgroundColor: Color(0xff1e1e1e),
+        child: CircleAvatar(
+          radius: 25.0,
+          backgroundColor: active ? Colors.grey.shade100 : Colors.transparent,
+          child: Icon(
+            icon,
+            color: active ? Colors.black87 : Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NavThree extends StatelessWidget {
+  final IconData icon;
+  final bool active;
+
+  const NavThree({
+    Key key,
+    this.icon,
+    this.active,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Sleep(),
+          ),
+        );
+      },
+      child: CircleAvatar(
+        radius: 30.0,
+        backgroundColor: Color(0xff1e1e1e),
+        child: CircleAvatar(
+          radius: 25.0,
+          backgroundColor: active ? Colors.grey.shade100 : Colors.transparent,
+          child: Icon(
+            icon,
+            color: active ? Colors.black87 : Colors.white,
+          ),
         ),
       ),
     );
