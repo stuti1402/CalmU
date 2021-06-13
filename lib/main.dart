@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_meditation/deatil.dart';
 import 'package:flutter_meditation/focus.dart';
+import 'package:flutter_meditation/sidebar.dart';
 import 'package:flutter_meditation/sleep.dart';
 
 void main() {
@@ -46,6 +47,7 @@ class _HomepageState extends State<HomePage> {
           CustomBody(),
           CustomAppbar(),
           NavBar(),
+          SideBar(),
         ],
       ),
     );
@@ -112,15 +114,8 @@ class CustomAppbar extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.wifi_tethering,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {},
-                  ),
                   IconButton(
                     icon: Icon(
                       Icons.notifications,
