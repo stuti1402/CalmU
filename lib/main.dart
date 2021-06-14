@@ -77,7 +77,7 @@ class CustomAppbar extends StatelessWidget {
               child: Container(
                 height: 50.0,
                 width: MediaQuery.of(context).size.width,
-                color: Color(0xff997f66),
+                color: Color(0xff998470),
               ),
             ),
             Positioned(
@@ -155,7 +155,7 @@ class CustomBody extends StatelessWidget {
             Section(
               headline: 'Sensations',
               description: 'feel the moment',
-              img: AssetImage('assets/galaxy.jpg'),
+              img: AssetImage('assets/gala.jpg'),
             ),
           ],
         ),
@@ -165,7 +165,7 @@ class CustomBody extends StatelessWidget {
             child: Section(
               headline: 'Daydream',
               description: 'go beyond the form',
-              img: AssetImage('assets/beach.jpg'),
+              img: AssetImage('assets/lo.jpg'),
             ),
           ),
         ),
@@ -343,7 +343,7 @@ class NavOne extends StatelessWidget {
         );
       },
       child: CircleAvatar(
-        radius: 30.0,
+        radius: 25.0,
         backgroundColor: Color(0xff1e1e1e),
         child: CircleAvatar(
           radius: 25.0,
@@ -380,8 +380,8 @@ class NavTwo extends StatelessWidget {
         );
       },
       child: CircleAvatar(
-        radius: 30.0,
-        backgroundColor: Color(0xff1e1e1e),
+        radius: 25.0,
+        backgroundColor: Colors.white,
         child: CircleAvatar(
           radius: 25.0,
           backgroundColor: active ? Colors.grey.shade100 : Colors.transparent,
@@ -417,7 +417,7 @@ class NavThree extends StatelessWidget {
         );
       },
       child: CircleAvatar(
-        radius: 30.0,
+        radius: 25.0,
         backgroundColor: Color(0xff1e1e1e),
         child: CircleAvatar(
           radius: 25.0,

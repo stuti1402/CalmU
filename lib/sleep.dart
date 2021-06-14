@@ -133,7 +133,7 @@ class NavOne extends StatelessWidget {
         );
       },
       child: CircleAvatar(
-        radius: 30.0,
+        radius: 25.0,
         backgroundColor: Color(0xff1e1e1e),
         child: CircleAvatar(
           radius: 25.0,
@@ -170,7 +170,7 @@ class NavTwo extends StatelessWidget {
         );
       },
       child: CircleAvatar(
-        radius: 30.0,
+        radius: 25.0,
         backgroundColor: Color(0xff1e1e1e),
         child: CircleAvatar(
           radius: 25.0,
@@ -207,8 +207,8 @@ class NavThree extends StatelessWidget {
         );
       },
       child: CircleAvatar(
-        radius: 30.0,
-        backgroundColor: Color(0xff1e1e1e),
+        radius: 25.0,
+        backgroundColor: Colors.white,
         child: CircleAvatar(
           radius: 25.0,
           backgroundColor: active ? Colors.grey.shade100 : Colors.transparent,
