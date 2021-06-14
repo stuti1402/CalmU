@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meditation/focus.dart';
 import 'package:flutter_meditation/main.dart';
@@ -75,6 +76,19 @@ class _SideBarState extends State<SideBar>
                       SizedBox(
                         height: 100,
                       ),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          "Creators",
+                          style: TextStyle(
+                              color: Color(0xff997f66),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
                       ListTile(
                         title: Text(
                           "Apoorv Maheshwari",
@@ -86,7 +100,7 @@ class _SideBarState extends State<SideBar>
                         subtitle: Text(
                           "GitHub: @Apoorv-cloud",
                           style: TextStyle(
-                            color: Color(0xffaba197),
+                            color: Color(0xff997f66),
                             fontSize: 15,
                           ),
                         ),
@@ -109,7 +123,7 @@ class _SideBarState extends State<SideBar>
                         subtitle: Text(
                           "GitHub: @Stuti1402",
                           style: TextStyle(
-                            color: Color(0xffaba197),
+                            color: Color(0xff997f66),
                             fontSize: 15,
                           ),
                         ),
@@ -122,7 +136,7 @@ class _SideBarState extends State<SideBar>
                         ),
                       ),
                       Divider(
-                        height: 64,
+                        height: 84,
                         thickness: 1,
                         color: Colors.white.withOpacity(0.3),
                         indent: 12,
@@ -141,6 +155,9 @@ class _SideBarState extends State<SideBar>
                           );
                         },
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       MenuItem(
                         icon: Icons.landscape,
                         title: "Relax",
@@ -153,6 +170,9 @@ class _SideBarState extends State<SideBar>
                             ),
                           );
                         },
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       MenuItem(
                         icon: Icons.brightness_3,
@@ -167,12 +187,25 @@ class _SideBarState extends State<SideBar>
                           );
                         },
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 4,
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          "CalmU",
+                          style: TextStyle(
+                              color: Color(0xff997f66),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
               Align(
-                alignment: Alignment(0, -0.9),
+                alignment: Alignment(0, -0.8),
                 child: GestureDetector(
                   onTap: () {
                     onIconPressed();
@@ -180,14 +213,14 @@ class _SideBarState extends State<SideBar>
                   child: ClipPath(
                     clipper: CustomMenuClipper(),
                     child: Container(
-                      width: 35,
-                      height: 110,
+                      width: 42,
+                      height: 115,
                       color: Colors.black87,
                       alignment: Alignment.centerLeft,
                       child: AnimatedIcon(
                         progress: _animationController.view,
-                        icon: AnimatedIcons.view_list,
-                        color: Color(0xffaba197),
+                        icon: AnimatedIcons.menu_close,
+                        color: Color(0xff997f66),
                         size: 18,
                       ),
                     ),
@@ -213,10 +246,13 @@ class CustomMenuClipper extends CustomClipper<Path> {
 
     Path path = Path();
     path.moveTo(0, 0);
-    path.quadraticBezierTo(0, 8, 10, 16);
-    path.quadraticBezierTo(width - 1, height / 2 - 20, width, height / 2);
-    path.quadraticBezierTo(width + 1, height / 2 + 20, 10, height - 16);
-    path.quadraticBezierTo(0, height - 8, 0, height);
+    path.moveTo(0, 0);
+    path.quadraticBezierTo(0, 28, 0, 35);
+    path.quadraticBezierTo(
+        width - 2, height / 2 - 18, width - 8, height / 2 + 6);
+    path.quadraticBezierTo(width - 10, height / 2.2 + 22, 5, height - 35);
+    path.quadraticBezierTo(-30, height - 30, 0, height);
+
     path.close();
     return path;
   }
@@ -240,13 +276,13 @@ class MenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(6),
         child: Row(
           children: <Widget>[
             Icon(
               icon,
-              color: Color(0xffaba197),
-              size: 30,
+              color: Color(0xff997f66),
+              size: 28,
             ),
             SizedBox(
               width: 20,
@@ -255,7 +291,7 @@ class MenuItem extends StatelessWidget {
               title,
               style: TextStyle(
                   fontWeight: FontWeight.w300,
-                  fontSize: 26,
+                  fontSize: 23,
                   color: Colors.white),
             )
           ],

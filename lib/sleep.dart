@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meditation/focus.dart';
 import 'package:flutter_meditation/main.dart';
+import 'package:flutter_meditation/sidebar.dart';
 
 class Sleep extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _SleepState extends State<Sleep> {
       body: Stack(
         children: [
           NavBar(),
+          SideBar(),
         ],
       ),
     );

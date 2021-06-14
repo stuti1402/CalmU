@@ -2,10 +2,13 @@
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_meditation/sidebar.dart';
 
 Map audioData = {
-  'url':
-      'https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4'
+  'url1':
+      'https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4',
+  'url2':
+      'https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4',
 };
 
 class Song {
@@ -40,6 +43,7 @@ class _DetailState extends State<Detail> {
             CustomBody(),
             CustomBottomBar(),
             PlayButton(),
+            SideBar(),
           ],
         ),
       ),
@@ -371,12 +375,12 @@ class CustomHeader extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           height: 500.0,
-          padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+          padding: EdgeInsets.fromLTRB(10, 40, 10, 0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
                     icon: Icon(
@@ -386,13 +390,6 @@ class CustomHeader extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.share,
-                      color: Colors.white54,
-                    ),
-                    onPressed: () {},
                   ),
                 ],
               ),

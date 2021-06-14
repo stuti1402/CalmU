@@ -9,7 +9,7 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.black87, // navigation bar color
-      statusBarColor: Color(0xffaba197), // status bar color
+      statusBarColor: Color(0xff997f66), // status bar color
       statusBarIconBrightness: Brightness.dark, // status bar icon color
       systemNavigationBarIconBrightness:
           Brightness.dark, // color of navigation controls
@@ -75,13 +75,13 @@ class CustomAppbar extends StatelessWidget {
             ClipPath(
               clipper: AppBarClipper(),
               child: Container(
-                height: 60.0,
+                height: 50.0,
                 width: MediaQuery.of(context).size.width,
-                color: Color(0xffaba197),
+                color: Color(0xff997f66),
               ),
             ),
             Positioned(
-              top: 35.0,
+              top: 30.0,
               left: MediaQuery.of(context).size.width / 2 - 25,
               child: Stack(
                 alignment: Alignment.center,
@@ -98,7 +98,7 @@ class CustomAppbar extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 75.0,
+              top: 70.0,
               left: MediaQuery.of(context).size.width / 2 - 10,
               child: CircleAvatar(
                 radius: 10.0,
@@ -112,14 +112,21 @@ class CustomAppbar extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Text(
+                    "CalmU",
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800),
+                  ),
                   IconButton(
                     icon: Icon(
                       Icons.notifications,
-                      color: Colors.white,
+                      color: Colors.black87,
                     ),
                     onPressed: () {},
                   ),
