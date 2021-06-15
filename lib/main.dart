@@ -1,3 +1,4 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_meditation/deatil.dart';
@@ -15,6 +16,11 @@ void main() {
           Brightness.dark, // color of navigation controls
     ),
   );
+  AssetsAudioPlayer.setupNotificationsOpenAction((notification) {
+    print(notification.audioId);
+    return true;
+  });
+
   runApp(MyApp());
 }
 

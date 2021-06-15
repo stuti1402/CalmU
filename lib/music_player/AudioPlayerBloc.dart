@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_meditation/data/repository/AudioPlayerRepository.dart';
 import 'package:flutter_meditation/model/AudioPlayerModel.dart';
 
 import 'AudioPlayerEvent.dart';
@@ -166,13 +167,4 @@ class AudioPlayerBloc extends Bloc<AudioPlayerEvent, AudioPlayerState> {
 
     yield AudioPlayerPaused(updatedModel, updatedList);
   }
-}
-
-abstract class AudioPlayerRepository {
-  Future<AudioPlayerModel> getById(String audioPlayerId);
-  Future<List<AudioPlayerModel>> getAll();
-
-  Future<List<AudioPlayerModel>> updateModel(AudioPlayerModel updatedModel);
-  Future<List<AudioPlayerModel>> updateAllModels(
-      List<AudioPlayerModel> updatedList);
 }

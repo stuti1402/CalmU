@@ -1,32 +1,16 @@
 //import 'dart:html';
 
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_meditation/MusicPage.dart';
 import 'package:flutter_meditation/sidebar.dart';
 
-Map audioData = {
-  'url1':
-      'https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4',
-  'url2':
-      'https://thegrowingdeveloper.org/files/audios/quiet-time.mp3?b4869097e4',
-};
-
-class Song {
-  final String name;
-  final String time;
-
-  Song({this.name, this.time});
-}
-
-List<Song> songs = [
-  Song(name: "Behaviour of the mind", time: "3:25"),
-  Song(name: "Your inner voice", time: "2:41"),
-  Song(name: "Embrace your emotions", time: "3:16"),
-  Song(name: "Letting go everythong", time: "3:28"),
-  Song(name: "Feel the sky", time: "2:56"),
-  Song(name: "Go beyond the form", time: "3:24"),
-  Song(name: "Love the feelings", time: "3:44"),
-];
+import 'data/repository/AudioPlayerModelFactory.dart';
+import 'data/repository/AudioPlayerRepository.dart';
+import 'data/repository/InMemoryAudioPlayerRepository.dart';
+import 'music_player/AudioPlayerBloc.dart';
 
 class Detail extends StatefulWidget {
   @override
@@ -36,15 +20,52 @@ class Detail extends StatefulWidget {
 class _DetailState extends State<Detail> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Stack(
-          children: [
-            CustomHeader(),
-            SideBar(),
-            MusicPage(),
-          ],
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<AudioPlayerRepository>(
+          create: (context) => InMemoryAudioPlayerRepository(
+              audioPlayerModels:
+                  AudioPlayerModelFactory.getAudioPlayerModels()),
         ),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AudioPlayerBloc>(
+            create: (BuildContext context) => AudioPlayerBloc(
+                assetsAudioPlayer: AssetsAudioPlayer.newPlayer(),
+                audioPlayerRepository:
+                    RepositoryProvider.of<AudioPlayerRepository>(context)),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Classic(),
+        ),
+      ),
+    );
+  }
+}
+
+class Classic extends StatefulWidget {
+  @override
+  _ClassicState createState() => _ClassicState();
+}
+
+class _ClassicState extends State<Classic> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          CustomHeader(),
+          SideBar(),
+          MusicPage(),
+        ],
       ),
     );
   }
