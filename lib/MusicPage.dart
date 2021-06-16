@@ -30,21 +30,27 @@ class MusicPage extends StatelessWidget {
   }
 
   Widget buildReadyTrackList(AudioPlayerReady state) {
-    return ListView.builder(
+
+    return Container(
+      margin: EdgeInsets.only(top: 500),
+      child:ListView.builder(
+          //physics: NeverScrollableScrollPhysics(),
         itemBuilder: (BuildContext context, int index) {
           return AudioTrackWidget(audioPlayerModel: state.entityList[index]);
         },
-        itemCount: state.entityList.length);
+        itemCount: state.entityList.length));
   }
 
   Widget buildPlayingTrackList(AudioPlayerPlaying state) {
     return Stack(
+
       fit: StackFit.expand,
       alignment: Alignment.topCenter,
       children: <Widget>[
         Container(
           alignment: Alignment.topCenter,
           child: ListView.builder(
+
               padding: EdgeInsets.only(bottom: 124),
               itemBuilder: (BuildContext context, int index) {
                 return AudioTrackWidget(

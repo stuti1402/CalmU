@@ -1,9 +1,17 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+<<<<<<< HEAD
+import 'package:flutter_meditation/MusicPage.dart';
+import 'package:flutter_meditation/deatil.dart';
+import 'package:flutter_meditation/focus.dart';
+import 'package:flutter_meditation/sidebar.dart';
+import 'package:flutter_meditation/sleep.dart';
+=======
 import 'package:flutter_meditation/open.dart';
 
 import 'animation_screen.dart';
+>>>>>>> a3e78e25eaaf9c050d6838e02ee3b2268d5b5ba0
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(

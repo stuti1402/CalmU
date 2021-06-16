@@ -60,6 +60,7 @@ class _ClassicState extends State<Classic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           CustomHeader(),
@@ -99,10 +100,9 @@ class CustomHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 25.0,
-              ),
+              SizedBox(height: 10,),
               RichText(
+
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   text: "Killing Anxiety",
@@ -113,13 +113,13 @@ class CustomHeader extends StatelessWidget {
                           "\n \nCalm your anxieties, reduce tension and increase body awareness",
                       style: TextStyle(
                         fontSize: 16.0,
-                        color: Colors.white70,
+                        color: Colors.white,
                       ),
                     ),
                   ],
                 ),
               ),
-              Spacer(),
+             Spacer(),
               Text(
                 "by Isabell Winter",
                 style: TextStyle(
@@ -129,11 +129,11 @@ class CustomHeader extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.only(
-                  top: 5.0,
+                  top: 1.0,
                 ),
                 width: 150.0,
                 height: 2.0,
-                decoration: BoxDecoration(
+                /*decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -143,20 +143,20 @@ class CustomHeader extends StatelessWidget {
                       Colors.grey.withOpacity(.05),
                     ],
                   ),
-                ),
+                ),*/
               ),
             ],
           ),
         ),
         Container(
-          width: 150.0,
-          height: 150.0,
+          width: 160.0,
+          height: 140.0,
           margin: EdgeInsets.only(
             top: 275.0,
           ),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/anxiety.jpg"),
+              image: AssetImage("assets/deep.png"),
             ),
             borderRadius: BorderRadius.circular(35.0),
           ),
@@ -165,6 +165,7 @@ class CustomHeader extends StatelessWidget {
     );
   }
 }
+
 
 class HeaderBackground extends StatelessWidget {
   @override
@@ -178,7 +179,7 @@ class HeaderBackground extends StatelessWidget {
           margin: EdgeInsets.only(
             top: 275.0,
           ),
-          decoration: BoxDecoration(
+          /*decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
                 blurRadius: 100.0,
@@ -186,26 +187,19 @@ class HeaderBackground extends StatelessWidget {
                 color: Colors.blueGrey.shade800,
               ),
             ],
-          ),
+          ),*/
         ),
-        ClipPath(
-          clipper: HeaderClipper(),
-          child: Container(
-            margin: EdgeInsets.only(
-              top: 5.0,
-            ),
-            height: 450.0,
-            color: Colors.white,
-          ),
-        ),
+
         ClipPath(
           clipper: HeaderClipper(),
           child: Container(
             height: 450.0,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/city.jpg"),
+                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop),
+                image: AssetImage("assets/medit.jpg"),
                 fit: BoxFit.cover,
+
               ),
             ),
           ),
