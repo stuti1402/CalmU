@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_meditation/music_player/AudioPlayerBloc.dart';
@@ -10,7 +11,7 @@ class MusicPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         child: BlocBuilder<AudioPlayerBloc, AudioPlayerState>(
             builder: (context, state) {
           if (state is AudioPlayerInitial) {
@@ -61,13 +62,11 @@ class MusicPage extends StatelessWidget {
 
   Widget buildPausedTrackList(AudioPlayerPaused state) {
     return Stack(
-      fit: StackFit.expand,
-      alignment: Alignment.topCenter,
-      children: <Widget>[
+      children: [
         Container(
           alignment: Alignment.topCenter,
           child: ListView.builder(
-              padding: EdgeInsets.only(bottom: 96),
+              padding: EdgeInsets.only(top: 500),
               itemBuilder: (BuildContext context, int index) {
                 return AudioTrackWidget(
                     audioPlayerModel: state.entityList[index]);

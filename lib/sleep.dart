@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meditation/focus.dart';
-import 'package:flutter_meditation/main.dart';
+import 'package:flutter_meditation/open.dart';
 import 'package:flutter_meditation/sidebar.dart';
 
 class Sleep extends StatefulWidget {
@@ -165,7 +165,7 @@ class NavTwo extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => Open(),
           ),
         );
       },

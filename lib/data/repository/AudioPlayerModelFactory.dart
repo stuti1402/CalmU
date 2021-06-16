@@ -25,6 +25,17 @@ class AudioPlayerModelFactory {
                 artist: "Joe Doe",
                 album: "Country Album",
                 image: MetasImage.asset("assets/country.jpg"),
+              ))),
+      AudioPlayerModel(
+          id: "3",
+          isPlaying: false,
+          audio: Audio("assets/audios/country_2.mp3",
+              metas: Metas(
+                id: "3",
+                title: "My Other Country Song",
+                artist: "Joe Doe",
+                album: "Country Album",
+                image: MetasImage.asset("assets/country.jpg"),
               )))
     ];
   }

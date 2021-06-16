@@ -32,7 +32,9 @@ class AudioTrackWidget extends StatelessWidget {
   }
 
   Widget setLeading() {
-    return new Image.asset(audioPlayerModel.audio.metas.image.path);
+    return new Image.asset(
+      audioPlayerModel.audio.metas.image.path,
+    );
   }
 
   Widget setTitle() {
