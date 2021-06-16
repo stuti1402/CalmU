@@ -15,6 +15,8 @@ class AudioTrackWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: setLeading(),
+        horizontalTitleGap: 7.0,
+      minVerticalPadding: 0,
       title: setTitle(),
       subtitle: setSubtitle(),
       trailing: IconButton(
@@ -26,21 +28,23 @@ class AudioTrackWidget extends StatelessWidget {
 
   Widget setIcon() {
     if (audioPlayerModel.isPlaying)
-      return Icon(Icons.pause);
+      return ImageIcon(AssetImage("assets/pause.png"),color: Colors.redAccent,
+      );
     else
-      return Icon(Icons.play_arrow);
+      return ImageIcon(AssetImage("assets/play-button.png"),color: Color(0xFF3A5A98),);
   }
 
   Widget setLeading() {
-    return new Image.asset(audioPlayerModel.audio.metas.image.path);
+    return new Image.asset(audioPlayerModel.audio.metas.image.path, height: 40, width: 44,);
   }
 
   Widget setTitle() {
-    return Text(audioPlayerModel.audio.metas.title);
+    return Text(
+      audioPlayerModel.audio.metas.title,style: TextStyle(fontSize: 13,),);
   }
 
   Widget setSubtitle() {
-    return Text(audioPlayerModel.audio.metas.artist);
+    return Text(audioPlayerModel.audio.metas.artist, style: TextStyle(fontSize: 12),);
   }
 
   Function setCallback(BuildContext context) {

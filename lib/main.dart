@@ -1,6 +1,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_meditation/MusicPage.dart';
 import 'package:flutter_meditation/deatil.dart';
 import 'package:flutter_meditation/focus.dart';
 import 'package:flutter_meditation/sidebar.dart';

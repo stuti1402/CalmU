@@ -32,15 +32,18 @@ class PlayerWidget extends StatelessWidget {
   Widget _showPlayer(BuildContext context, AudioPlayerModel model) {
     return Container(
       child: Column(
+
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Container(
+
             color: Colors.grey.shade200,
             child: ListTile(
               leading: setLeading(model),
+
               title: setTitle(model),
               subtitle: setSubtitle(model),
-              contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              contentPadding: EdgeInsets.symmetric(vertical: 4 ,horizontal: 16),
               trailing: IconButton(
                 icon: setIcon(model),
                 onPressed: setCallback(context, model),
@@ -54,9 +57,9 @@ class PlayerWidget extends StatelessWidget {
 
   Widget setIcon(AudioPlayerModel model) {
     if (model.isPlaying)
-      return Icon(Icons.pause);
+      return ImageIcon(AssetImage("assets/pause.png"));
     else
-      return Icon(Icons.play_arrow);
+      return ImageIcon(AssetImage("assets/play-button.png"), color: Colors.deepPurpleAccent,);
   }
 
   Widget setLeading(AudioPlayerModel model) {
