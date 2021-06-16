@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_meditation/main.dart';
 import 'package:flutter_meditation/sidebar.dart';
 import 'package:flutter_meditation/sleep.dart';
+
+import 'open.dart';
 
 class Focuses extends StatefulWidget {
   @override
@@ -165,7 +166,7 @@ class NavTwo extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => Open(),
           ),
         );
       },
