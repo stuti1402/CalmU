@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meditation/deatil.dart';
-import 'package:flutter_meditation/focus.dart';
+import 'package:flutter_meditation/focus/focus.dart';
 import 'package:flutter_meditation/sidebar.dart';
 import 'package:flutter_meditation/sleep.dart';
 
