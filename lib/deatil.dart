@@ -11,6 +11,7 @@ import 'data/repository/AudioPlayerModelFactory.dart';
 import 'data/repository/AudioPlayerRepository.dart';
 import 'data/repository/InMemoryAudioPlayerRepository.dart';
 import 'music_player/AudioPlayerBloc.dart';
+import 'open.dart';
 
 class Detail extends StatefulWidget {
   @override
@@ -63,9 +64,9 @@ class _ClassicState extends State<Classic> {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
+          MusicPage(),
           CustomHeader(),
           SideBar(),
-          MusicPage(),
         ],
       ),
     );
@@ -81,8 +82,8 @@ class CustomHeader extends StatelessWidget {
         HeaderBackground(),
         Container(
           alignment: Alignment.center,
-          height: 500.0,
-          padding: EdgeInsets.fromLTRB(10, 40, 10, 0),
+          height: 450.0,
+          padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -92,17 +93,24 @@ class CustomHeader extends StatelessWidget {
                   IconButton(
                     icon: Icon(
                       Icons.arrow_back,
-                      color: Colors.white54,
+                      color: Colors.white,
                     ),
                     onPressed: () {
                       Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Open(),
+                        ),
+                      );
                     },
                   ),
                 ],
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               RichText(
-
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   text: "Killing Anxiety",
@@ -119,21 +127,14 @@ class CustomHeader extends StatelessWidget {
                   ],
                 ),
               ),
-             Spacer(),
-              Text(
-                "by Isabell Winter",
-                style: TextStyle(
-                  color: Colors.black45,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              Spacer(),
               Container(
                 margin: EdgeInsets.only(
                   top: 1.0,
                 ),
                 width: 150.0,
                 height: 2.0,
-                /*decoration: BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -143,7 +144,7 @@ class CustomHeader extends StatelessWidget {
                       Colors.grey.withOpacity(.05),
                     ],
                   ),
-                ),*/
+                ),
               ),
             ],
           ),
@@ -151,9 +152,7 @@ class CustomHeader extends StatelessWidget {
         Container(
           width: 160.0,
           height: 140.0,
-          margin: EdgeInsets.only(
-            top: 275.0,
-          ),
+          margin: EdgeInsets.only(top: 275.0, bottom: 0),
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/deep.png"),
@@ -165,7 +164,6 @@ class CustomHeader extends StatelessWidget {
     );
   }
 }
-
 
 class HeaderBackground extends StatelessWidget {
   @override
@@ -189,17 +187,16 @@ class HeaderBackground extends StatelessWidget {
             ],
           ),*/
         ),
-
         ClipPath(
           clipper: HeaderClipper(),
           child: Container(
             height: 450.0,
             decoration: BoxDecoration(
               image: DecorationImage(
-                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop),
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.6), BlendMode.dstATop),
                 image: AssetImage("assets/medit.jpg"),
                 fit: BoxFit.cover,
-
               ),
             ),
           ),

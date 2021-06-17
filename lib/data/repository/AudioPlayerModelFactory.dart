@@ -4,7 +4,6 @@ import 'package:flutter_meditation/model/AudioPlayerModel.dart';
 class AudioPlayerModelFactory {
   static List<AudioPlayerModel> getAudioPlayerModels() {
     return [
-
       AudioPlayerModel(
           id: "1",
           isPlaying: false,
@@ -61,7 +60,6 @@ class AudioPlayerModelFactory {
                 image: MetasImage.asset("assets/country.jpg"),
               ))),
       AudioPlayerModel(
-<<<<<<< HEAD
           id: "6",
           isPlaying: false,
           audio: Audio("assets/audios/country.mp3",
@@ -78,18 +76,10 @@ class AudioPlayerModelFactory {
           audio: Audio("assets/audios/country_2.mp3",
               metas: Metas(
                 id: "7",
-=======
-          id: "3",
-          isPlaying: false,
-          audio: Audio("assets/audios/country_2.mp3",
-              metas: Metas(
-                id: "3",
->>>>>>> a3e78e25eaaf9c050d6838e02ee3b2268d5b5ba0
                 title: "My Other Country Song",
                 artist: "Joe Doe",
                 album: "Country Album",
                 image: MetasImage.asset("assets/country.jpg"),
-<<<<<<< HEAD
               ))),
       AudioPlayerModel(
           id: "8",
@@ -102,9 +92,6 @@ class AudioPlayerModelFactory {
                 album: "Country Album",
                 image: MetasImage.asset("assets/country.jpg"),
               ))),
-=======
-              )))
->>>>>>> a3e78e25eaaf9c050d6838e02ee3b2268d5b5ba0
     ];
   }
 }

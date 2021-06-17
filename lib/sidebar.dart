@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meditation/focus/focus.dart';
-import 'package:flutter_meditation/main.dart';
 import 'package:flutter_meditation/sleep.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'open.dart';
 
 class SideBar extends StatefulWidget {
   @override
@@ -166,7 +167,7 @@ class _SideBarState extends State<SideBar>
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomePage(),
+                              builder: (context) => Open(),
                             ),
                           );
                         },
