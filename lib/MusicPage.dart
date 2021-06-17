@@ -44,9 +44,9 @@ class MusicPage extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          alignment: Alignment.topCenter,
+          margin: EdgeInsets.only(top: 460),
           child: ListView.builder(
-              padding: EdgeInsets.only(top: 460),
+              //padding: EdgeInsets.only(top: 460),
               itemBuilder: (BuildContext context, int index) {
                 return AudioTrackWidget(
                     audioPlayerModel: state.entityList[index]);
