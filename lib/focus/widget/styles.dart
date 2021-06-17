@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meditation/colorsfile.dart';
 import 'package:flutter_meditation/focus/models/data.dart';
 import 'package:flutter_meditation/focus/models/style.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Styles extends StatefulWidget {
   @override
@@ -13,14 +14,22 @@ class _StylesState extends State<Styles> {
     Size size = MediaQuery.of(context).size;
     Style style = styles[index];
 
+    _launchURL() async {
+      var url = style.vidurl;
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
     return Stack(
       alignment: Alignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: appPadding / 2),
+          padding: const EdgeInsets.fromLTRB(20, 5, 10, 0),
           child: Container(
-            margin:
-                EdgeInsets.only(top: appPadding * 3, bottom: appPadding * 2),
+            margin: EdgeInsets.only(top: 0, bottom: 60),
             width: size.width * 0.4,
             height: size.height * 0.2,
             decoration: BoxDecoration(
@@ -32,8 +41,8 @@ class _StylesState extends State<Styles> {
                     topRight: Radius.circular(100.0)),
                 boxShadow: [
                   BoxShadow(
-                      color: black.withOpacity(0.3),
-                      blurRadius: 20.0,
+                      color: black.withOpacity(0.2),
+                      blurRadius: 30.0,
                       offset: Offset(5, 15))
                 ]),
             child: Column(
@@ -43,12 +52,12 @@ class _StylesState extends State<Styles> {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: appPadding / 2,
-                      right: appPadding * 3,
+                      right: appPadding * 3.1,
                       top: appPadding),
                   child: Text(
                     style.name,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 2,
@@ -85,9 +94,12 @@ class _StylesState extends State<Styles> {
                         decoration: BoxDecoration(
                             color: primary,
                             borderRadius: BorderRadius.circular(5.0)),
-                        child: Icon(
-                          Icons.add,
-                          color: white,
+                        child: InkWell(
+                          onTap: _launchURL,
+                          child: Icon(
+                            Icons.play_arrow,
+                            color: white,
+                          ),
                         ),
                       )
                     ],
@@ -99,11 +111,11 @@ class _StylesState extends State<Styles> {
         ),
         Positioned(
           right: 0,
-          top: 0,
+          top: -10,
           child: Container(
             child: Image(
               width: size.width * 0.3,
-              height: size.height * 0.2,
+              height: size.height * 0.15,
               image: AssetImage(style.imageUrl),
             ),
           ),
@@ -119,31 +131,40 @@ class _StylesState extends State<Styles> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: appPadding, vertical: appPadding),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'For Beginners',
+                'Must Do Poses',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 20,
                   fontWeight: FontWeight.w800,
-                  letterSpacing: 1.5,
+                  letterSpacing: 1,
                 ),
               ),
-              Text(
-                'See All',
-                style: TextStyle(
-                    fontSize: 18, fontWeight: FontWeight.w800, color: primary),
-              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    const url = 'https://www.youtube.com/watch?v=Fky9YEwDUvw';
+                    launchURL(url);
+                  });
+                },
+                child: Text(
+                  'See All',
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      color: primary),
+                ),
+              )
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: appPadding / 2),
+          padding: const EdgeInsets.only(left: 10),
           child: Container(
-            height: size.height * 0.33,
+            height: size.height * 0.28,
             child: ListView.builder(
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
@@ -155,5 +176,13 @@ class _StylesState extends State<Styles> {
         )
       ],
     );
+  }
+
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

@@ -42,8 +42,6 @@ class _AAAState extends State<AAA> {
         padding: EdgeInsets.only(top: appPadding * 1),
         child: Column(
           children: [
-            //NavBar(),
-            //SideBar(),
             Styles(),
             Courses(),
           ],

@@ -27,6 +27,8 @@ dependencies:
   flutter_bloc: ^4.0.1
   equatable: ^1.0.0
   assets_audio_player: ^2.0.10
+  url_launcher: ^6.0.3
+  video_player: ^0.10.5
 
 
 

@@ -7,7 +7,7 @@ class AudioPlayerModelFactory {
       AudioPlayerModel(
           id: "1",
           isPlaying: false,
-          audio: Audio("assets/audio/forest_birds.mp3",
+          audio: Audio("assets/audio/meditation_piano.mp3",
               metas: Metas(
                 id: "1",
                 title: "Forest Birds",
