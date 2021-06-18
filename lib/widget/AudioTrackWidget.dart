@@ -13,15 +13,33 @@ class AudioTrackWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: setLeading(),
-      horizontalTitleGap: 7.0,
-      minVerticalPadding: 0,
-      title: setTitle(),
-      subtitle: setSubtitle(),
-      trailing: IconButton(
-        icon: setIcon(),
-        onPressed: setCallback(context),
+    return Container(
+      padding: EdgeInsets.only(bottom: 0, left: 10),
+      child: Container(
+        padding: EdgeInsets.only(top: 0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(70.0),
+            topRight: Radius.circular(70.0),
+          ),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.orange.withOpacity(0.03),
+                blurRadius: 300.0,
+                offset: Offset(50, 50))
+          ],
+        ),
+        child: ListTile(
+          leading: setLeading(),
+          horizontalTitleGap: 15.0,
+          minVerticalPadding: 7,
+          title: setTitle(),
+          subtitle: setSubtitle(),
+          trailing: IconButton(
+            icon: setIcon(),
+            onPressed: setCallback(context),
+          ),
+        ),
       ),
     );
   }
@@ -30,20 +48,22 @@ class AudioTrackWidget extends StatelessWidget {
     if (audioPlayerModel.isPlaying)
       return ImageIcon(
         AssetImage("assets/pause.png"),
-        color: Colors.redAccent,
+        color: Colors.deepOrange.shade300,
+        size: 18,
       );
     else
       return ImageIcon(
         AssetImage("assets/play-button.png"),
-        color: Color(0xFF3A5A98),
+        color: Colors.deepOrange,
+        size: 20,
       );
   }
 
   Widget setLeading() {
     return new Image.asset(
       audioPlayerModel.audio.metas.image.path,
-      height: 40,
-      width: 44,
+      height: 50,
+      width: 50,
     );
   }
 
@@ -51,7 +71,8 @@ class AudioTrackWidget extends StatelessWidget {
     return Text(
       audioPlayerModel.audio.metas.title,
       style: TextStyle(
-        fontSize: 13,
+        fontSize: 15,
+        color: Colors.deepOrangeAccent,
       ),
     );
   }
@@ -59,7 +80,7 @@ class AudioTrackWidget extends StatelessWidget {
   Widget setSubtitle() {
     return Text(
       audioPlayerModel.audio.metas.artist,
-      style: TextStyle(fontSize: 12),
+      style: TextStyle(fontSize: 13),
     );
   }
 

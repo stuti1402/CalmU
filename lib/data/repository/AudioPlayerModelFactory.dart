@@ -4,7 +4,7 @@ import 'package:flutter_meditation/model/AudioPlayerModel.dart';
 class AudioPlayerModelFactory {
   static List<AudioPlayerModel> getAudioPlayerModels() {
     return [
-      AudioPlayerModel(
+      /*AudioPlayerModel(
           id: "1",
           isPlaying: false,
           audio: Audio("assets/audio/meditation_piano.mp3",
@@ -14,7 +14,7 @@ class AudioPlayerModelFactory {
                 artist: "Joe Doe",
                 album: "Country Album",
                 image: MetasImage.asset("assets/country.jpg"),
-              ))),
+              ))),*/
       AudioPlayerModel(
           id: "2",
           isPlaying: false,
