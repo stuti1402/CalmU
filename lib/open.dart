@@ -42,7 +42,7 @@ class CustomAppbar extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.black87,
+              Colors.white,
               Colors.transparent,
             ],
           ),
@@ -127,12 +127,12 @@ class CustomBody extends StatelessWidget {
             Section(
               headline: "Meditation",
               description: "discover happiness",
-              img: AssetImage("assets/dessert.jpg"),
+              img: AssetImage("assets/med4.jpg"),
             ),
             Section(
               headline: 'Sensations',
               description: 'feel the moment',
-              img: AssetImage('assets/gala.jpg'),
+              img: AssetImage('assets/sens4.jpg'),
             ),
           ],
         ),
@@ -142,7 +142,7 @@ class CustomBody extends StatelessWidget {
             child: Section(
               headline: 'Daydream',
               description: 'go beyond the form',
-              img: AssetImage('assets/lo.jpg'),
+              img: AssetImage('assets/dayd3.jpg'),
             ),
           ),
         ),

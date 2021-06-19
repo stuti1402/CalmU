@@ -161,7 +161,7 @@ class _MeditationScreenState extends State<MeditationScreen> {
             top: 40,
             left: 20,
             child: Text(
-              'breezy',
+              'CalmU',
               style: Theme.of(context).textTheme.headline5.copyWith(
                     color: Colors.grey[50],
                     fontWeight: FontWeight.bold,
