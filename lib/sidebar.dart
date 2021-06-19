@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meditation/focus/focus.dart';
-import 'package:flutter_meditation/sleep.dart';
+import 'package:flutter_meditation/sleep/sleep.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'open.dart';

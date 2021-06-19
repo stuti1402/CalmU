@@ -4,9 +4,9 @@ import 'package:flutter_meditation/model/AudioPlayerModel.dart';
 abstract class AudioPlayerState extends Equatable {
   const AudioPlayerState();
 
-  get progressMusic => null;
-
   int get progressSecond => null;
+
+  get progressMusic => null;
 }
 
 class AudioPlayerInitial extends AudioPlayerState {

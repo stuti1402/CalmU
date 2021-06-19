@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meditation/focus/widget/courses.dart';
 import 'package:flutter_meditation/focus/widget/styles.dart';
-import 'package:flutter_meditation/sleep.dart';
+import 'package:flutter_meditation/sleep/sleep.dart';
 
 import '../colorsfile.dart';
 import '../open.dart';

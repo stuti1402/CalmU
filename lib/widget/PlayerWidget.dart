@@ -199,7 +199,12 @@ Widget _buildWidgetPlayerController() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      Icon(Icons.skip_previous, color: Colors.white, size: 32.0),
+      GestureDetector(
+          child: Icon(Icons.skip_previous, color: Colors.white, size: 32.0),
+          behavior: HitTestBehavior.translucent,
+          onTap: () {
+            // changeTrack(false);
+          }),
       SizedBox(width: 36.0),
       Container(
         decoration: BoxDecoration(
