@@ -1,7 +1,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_meditation/open.dart';
+import 'package:flutter_meditation/intro_page.dart';
 import 'package:flutter_meditation/sleep/provider/meditation_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.amber,
+          primarySwatch: Colors.purple,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: HomePage(),
@@ -61,7 +61,7 @@ class _HomepageState extends State<HomePage> {
       child: Stack(
         children: <Widget>[
           Scaffold(
-            body: Open(),
+            body: IntroPage(),
           ),
           IgnorePointer(
               child: AnimationScreen(color: Theme.of(context).accentColor))
