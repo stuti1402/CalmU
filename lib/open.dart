@@ -127,12 +127,12 @@ class CustomBody extends StatelessWidget {
             Section(
               headline: "Meditation",
               description: "discover happiness",
-              img: AssetImage("assets/med4.jpg"),
+              img: AssetImage("assets/dessert.jpg"),
             ),
             Section(
               headline: 'Sensations',
               description: 'feel the moment',
-              img: AssetImage('assets/sens4.jpg'),
+              img: AssetImage('assets/gala.jpg'),
             ),
           ],
         ),
@@ -142,7 +142,7 @@ class CustomBody extends StatelessWidget {
             child: Section(
               headline: 'Daydream',
               description: 'go beyond the form',
-              img: AssetImage('assets/dayd3.jpg'),
+              img: AssetImage('assets/lo.jpg'),
             ),
           ),
         ),
@@ -315,9 +315,20 @@ class NavOne extends StatelessWidget {
         Navigator.pop(context);
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => Focuses(),
-          ),
+          PageRouteBuilder(
+              transitionDuration: Duration(seconds: 1),
+              transitionsBuilder: (context, animation, animationTime, child) {
+                animation = CurvedAnimation(
+                    parent: animation, curve: Curves.elasticOut);
+                return ScaleTransition(
+                  alignment: Alignment.bottomLeft,
+                  scale: animation,
+                  child: child,
+                );
+              },
+              pageBuilder: (context, animation, animationTime) {
+                return Focuses();
+              }),
         );
       },
       child: CircleAvatar(
@@ -353,9 +364,20 @@ class NavTwo extends StatelessWidget {
         Navigator.pop(context);
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => Open(),
-          ),
+          PageRouteBuilder(
+              transitionDuration: Duration(seconds: 1),
+              transitionsBuilder: (context, animation, animationTime, child) {
+                animation = CurvedAnimation(
+                    parent: animation, curve: Curves.elasticOut);
+                return ScaleTransition(
+                  alignment: Alignment.bottomCenter,
+                  scale: animation,
+                  child: child,
+                );
+              },
+              pageBuilder: (context, animation, animationTime) {
+                return Open();
+              }),
         );
       },
       child: CircleAvatar(
@@ -391,9 +413,20 @@ class NavThree extends StatelessWidget {
         Navigator.pop(context);
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => Sleep(),
-          ),
+          PageRouteBuilder(
+              transitionDuration: Duration(seconds: 1),
+              transitionsBuilder: (context, animation, animationTime, child) {
+                animation = CurvedAnimation(
+                    parent: animation, curve: Curves.elasticOut);
+                return ScaleTransition(
+                  alignment: Alignment.bottomRight,
+                  scale: animation,
+                  child: child,
+                );
+              },
+              pageBuilder: (context, animation, animationTime) {
+                return Sleep();
+              }),
         );
       },
       child: CircleAvatar(

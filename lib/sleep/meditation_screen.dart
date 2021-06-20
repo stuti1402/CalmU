@@ -149,12 +149,45 @@ class _MeditationScreenState extends State<MeditationScreen> {
               ),
             ),
           ),
+          /*Align(
+            alignment: Alignment.topCenter,
+            child: ClipPath(
+              clipper: ImageClipper(),
+              child: Image.asset(
+                'assets/dessert.jpg',
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width,
+                //color: Color(0x99000000),
+                //colorBlendMode: BlendMode.darken,
+                height: MediaQuery.of(context).size.height / 2,
+              ),
+            ),
+          ),*/
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 2.5,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: new AssetImage('assets/dessert.jpg'),
+                fit: BoxFit.fill,
+              ),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(120.0),
+              ),
+              /*gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xFFf45d27), Color(0xFFf5851f)],*/
+            ),
+            //borderRadius:
+            //BorderRadius.only(bottomLeft: Radius.circular(150))),
+          ),
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
             // A container that expands to the full available space.
             child: Container(
               alignment: Alignment.center,
-              color: Colors.transparent,
+              //color: Colors.transparent,
             ),
           ),
           Positioned(
@@ -187,7 +220,7 @@ class _MeditationScreenState extends State<MeditationScreen> {
               child: Icon(
                 Icons.settings,
                 size: 30,
-                color: Theme.of(context).iconTheme.color,
+                color: Colors.white,
               ),
             ),
           ),
@@ -202,7 +235,7 @@ class _MeditationScreenState extends State<MeditationScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
+                      padding: const EdgeInsets.only(bottom: 70.0, left: 30),
                       child: Text(
                         'Find a Comfortable place to Seat..',
                         style: Theme.of(context).textTheme.headline6.copyWith(
@@ -213,7 +246,7 @@ class _MeditationScreenState extends State<MeditationScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      padding: const EdgeInsets.only(top: 50.0, left: 20),
                       child: Text(
                         'The Aim is not to fight your mind but to acknowledge and embrace everything that\'s happening around you and let go.',
                         style: Theme.of(context).textTheme.bodyText1.copyWith(
@@ -255,7 +288,7 @@ class _MeditationScreenState extends State<MeditationScreen> {
                   alignment: Alignment.center,
                   child: Text(
                     "Meditate".toUpperCase(),
-                    style: Theme.of(context).textTheme.button.copyWith(
+                    style: TextStyle(
                         //color: Colors.white.withOpacity(0.85),
                         color: Colors.grey[50],
                         fontSize: Global.screenWidth * 0.035,
@@ -322,6 +355,28 @@ class _MeditationScreenState extends State<MeditationScreen> {
 
 //   // for showing the selected radio button
 // }
+}
+
+class ImageClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    Offset curveStartingPoint = Offset(0, 40);
+    Offset curveEndPoint = Offset(size.width, size.height * 0.95);
+    path.lineTo(curveStartingPoint.dx, curveStartingPoint.dy - 5);
+    path.quadraticBezierTo(size.width * 0.2, size.height * 0.85,
+        curveEndPoint.dx - 60, curveEndPoint.dy + 10);
+    path.quadraticBezierTo(size.width * 0.99, size.height * 0.99,
+        curveEndPoint.dx, curveEndPoint.dy);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
+  }
 }
 
 class SettingsPage extends StatefulWidget {
